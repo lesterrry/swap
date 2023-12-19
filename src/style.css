@@ -6,22 +6,39 @@ me@aydar.media
 *************************/
 
 @import 'fonts.css';
+@import 'content.css';
+@import 'media.css';
 
 :root {
 	--белый-база: #EDEDED;
 	--белый-почти: rgba(255, 255, 255, 0.8);
-	--белый-вторич: rgba(255, 255, 255, 0.12);
+	--белый-но-не-совсем: rgba(255, 255, 255, 0.25);
+	--белый-вторич: rgba(255, 255, 255, 0.1);
 	--белый-третич: rgba(255, 255, 255, 0.08);
 	--негр: #040613;
 }
 
-*, ::after, ::before {
+*,
+::after,
+::before {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	transition: 0.2s ease-out;
 }
 
-a, p, h1, h2, h3, h4, h5, h6 {
+.bg {
+	transition: none;
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	font-family: 'AV';
 	line-height: 1.4;
 	color: var(--белый-база);
@@ -29,21 +46,27 @@ a, p, h1, h2, h3, h4, h5, h6 {
 	letter-spacing: 0.05rem;
 }
 
-p {
+a {
+	text-decoration: none;
+}
+
+p, input {
 	font-size: 42px;
 	color: var(--белый-вторич);
 }
 
-html, body {
+html,
+body {
 	overflow-x: hidden;
 }
 
 body {
 	background-color: var(--негр);
-	height: 3000px;
+	/* height: 7000px; */
 }
 
-img, svg {
+img,
+svg {
 	-webkit-user-select: none;
 	user-select: none;
 }
@@ -55,13 +78,111 @@ section {
 	margin-top: 300px;
 }
 
+footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 110px 60px 110px;
+}
+
+li:before {
+	content: '';
+	background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" height="14" width="14"> <circle cx="7" cy="7" r="7" fill="%2322242F" /> </svg>');
+	display: block;
+	position: relative;
+	width: 14px;
+	height: 14px;
+	left: -30px;
+	top: 32px;
+	font-size: 260px;
+	color: var(--белый-третич);
+	font-size: 20px;
+}
+
+input {
+	border: none;
+	outline: none;
+	background-color: initial;
+}
+
+::-webkit-input-placeholder {
+	color: var(--белый-вторич);
+}
+
+:-moz-placeholder {
+	color: var(--белый-вторич);
+	opacity: 1;
+}
+
+::-moz-placeholder {
+	color: var(--белый-вторич);
+	opacity: 1;
+}
+
+:-ms-input-placeholder {
+	color: var(--белый-вторич);
+}
+
+::-ms-input-placeholder {
+	color: var(--белый-вторич);
+}
+
+::placeholder {
+	color: var(--белый-вторич);
+}
+
+footer, .separared {
+	margin-top: 300px;
+}
+
+.bg {
+	overflow: hidden;
+}
+
 .grid {
 	padding: 0 100px;
 }
 
-.separared {
-	margin-top: 300px;
+.window {
+	background-color: var(--белый-третич);
+	border-radius: 20px;
+	border: 2px solid var(--белый-вторич);
+	backdrop-filter: blur(18px);
+	-webkit-backdrop-filter: blur(18px);
 }
 
-@import 'content.css';
-@import 'media.css';
+.window p.subtitle {
+	position: absolute;
+	text-transform: uppercase;
+	font-size: 28px;
+	left: 14px;
+}
+
+.window p.subtitle:nth-of-type(1) {
+	top: 10px;
+}
+
+.window p.subtitle:nth-of-type(2) {
+	bottom: 8px;
+}
+
+.subelem {
+	margin-top: 60px;
+}
+
+.button {
+	padding: 10px 40px;
+	width: fit-content;
+	border-radius: 16px;
+	cursor: pointer;
+}
+
+.button:hover {
+	background-color: var(--белый-но-не-совсем);
+}
+
+.button p {
+	color: var(--белый-база);
+	font-size: 24px;
+}
+
