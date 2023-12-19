@@ -1,1 +1,4 @@
-
+@font-face {
+  font-family: AV;
+  src: url("../static/fonts/av.woff2") format("woff2");
+}

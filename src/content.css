@@ -1,0 +1,47 @@
+/*************************
+Handcrafted by Aydar N.
+2023
+
+me@aydar.media
+*************************/
+
+.bg {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	width: 100vw;
+	height: 600px;
+	background-image: linear-gradient(to bottom, #09061B, var(--негр));
+}
+
+section.logo {
+	margin-top: initial;
+}
+
+section.logo img {
+	position: relative;
+	width: 95%;
+	margin: 50px 25px;
+	z-index: 2;
+}
+
+section.logo h1 {
+	position: absolute;
+	right: 160px;
+	bottom: 100px;
+	z-index: 2;
+}
+
+section.description p {
+	width: 100%;
+}
+
+section.overview .window {
+	position: absolute;
+	left: 520px;
+	width: 400px;
+	height: 600px;
+	background-color: var(--белый-третич);
+	border-radius: 24px;
+	border: 2px solid var(--белый-вторич);
+}

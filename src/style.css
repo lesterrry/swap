@@ -7,6 +7,14 @@ me@aydar.media
 
 @import 'fonts.css';
 
+:root {
+	--белый-база: #EDEDED;
+	--белый-почти: rgba(255, 255, 255, 0.8);
+	--белый-вторич: rgba(255, 255, 255, 0.12);
+	--белый-третич: rgba(255, 255, 255, 0.08);
+	--негр: #040613;
+}
+
 *, ::after, ::before {
 	box-sizing: border-box;
 	margin: 0;
@@ -14,21 +22,46 @@ me@aydar.media
 }
 
 a, p, h1, h2, h3, h4, h5, h6 {
-	font-family: 'JetBrains Mono';
+	font-family: 'AV';
 	line-height: 1.4;
-	text-transform: uppercase;
+	color: var(--белый-база);
+	font-weight: 100;
+	letter-spacing: 0.05rem;
+}
+
+p {
+	font-size: 42px;
+	color: var(--белый-вторич);
 }
 
 html, body {
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 body {
-	background-color: #dbd7d2;
+	background-color: var(--негр);
+	height: 3000px;
 }
 
 img, svg {
 	-webkit-user-select: none;
+	user-select: none;
 }
 
+section {
+	position: relative;
+	width: 100%;
+	padding: 0 50px;
+	margin-top: 300px;
+}
 
+.grid {
+	padding: 0 100px;
+}
+
+.separared {
+	margin-top: 300px;
+}
+
+@import 'content.css';
+@import 'media.css';
