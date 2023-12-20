@@ -158,7 +158,7 @@ section.faq p:not(:first-of-type)::before {
 	left: 50px;
 }
 
-section.faq p:hover {
+section.faq p:not(:first-of-type):hover {
 	color: var(--белый-база);
 }
 
