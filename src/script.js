@@ -36,6 +36,11 @@ let cursor = {
 	x: 0,
 	y: 0
 }
+let multiplier = {
+    x: 1,
+    y: 1,
+    z: 1
+}
 
 const clock = new three.Clock()
 const camera = new three.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
@@ -51,16 +56,22 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.shadowMap.enabled = true
 
 window.addEventListener('scroll', () => {
-    const v = window.scrollY
-    const max = 2150
+    adjustScroll()
+})
 
-    swap.position.x = mapValue(v, 0, max, 0, 3)
-    swap.position.y = mapValue(v, 0, max, 0, -42)
-    swap.position.z = mapValue(v, 0, max, 0, -17)
+window.addEventListener('mousemove', (event) => {
+	cursor.x = event.clientX / sizes.width - 0.5
+	cursor.y = - (event.clientY / sizes.height - 0.5)
 
-    swap.rotation.x = mapValue(v, 0, max, 0, 4.71)
-    swap.rotation.y = mapValue(v, 0, max, 1.4, 0.3)
-    swap.rotation.z = mapValue(v, 0, max, 1, 2.59)
+    multiplier = { 
+        x: 1,
+        y: 1 + (cursor.x * 0.05), 
+        z: 1 + (cursor.y * -0.2), 
+    }
+
+    console.log(multiplier)
+    
+    adjustScroll()
 })
 
 window.addEventListener('resize', () => {
@@ -130,6 +141,19 @@ window.addEventListener('load', () => {
 
     threeTick()
 })
+
+const adjustScroll = () => {
+    const v = window.scrollY
+    const max = 2150
+
+    swap.position.x = mapValue(v, 0, max, 0, 3)
+    swap.position.y = mapValue(v, 400, max, 0, -42)
+    swap.position.z = mapValue(v, 1000, max, 0, -17)
+
+    swap.rotation.x = mapValue(v, 0, max, 0, 4.71) * multiplier.x
+    swap.rotation.y = mapValue(v, 0, max, 1.4, 0.3) * multiplier.y
+    swap.rotation.z = mapValue(v, 0, max, 1, 2.59) * multiplier.z
+}
 
 const mapValue = (value, l, r, min, max) => {
     if (value <= l) return min
