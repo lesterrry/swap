@@ -25,12 +25,13 @@ const paragraphs = [
     'section.buy p:nth-of-type(1)',
     'section.subscribe p:nth-of-type(1)',
 ]
+const canvas = document.querySelector('.logo canvas')
+const gallery = document.querySelector('.smells div')
 
 let swap
-const canvas = document.querySelector('.logo canvas')
 const sizes = {
 	width: canvas.clientWidth,
-	height: 3100
+	height: 3200
 }
 let cursor = {
 	x: 0,
@@ -42,7 +43,6 @@ let multiplier = {
     z: 1
 }
 
-const clock = new three.Clock()
 const camera = new three.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
 const scene = new three.Scene()
 const renderer = new three.WebGLRenderer({
@@ -68,8 +68,6 @@ window.addEventListener('mousemove', (event) => {
         y: 1 + (cursor.x * 0.05), 
         z: 1 + (cursor.y * -0.2), 
     }
-
-    console.log(multiplier)
     
     adjustScroll()
 })
@@ -101,7 +99,6 @@ window.addEventListener('load', () => {
         })
     }
 
-    console.log(sizes)
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
@@ -135,7 +132,6 @@ window.addEventListener('load', () => {
 			}
 		})
 		swap = object
-        init()
 		scene.add(object)
 	})
 
@@ -144,15 +140,20 @@ window.addEventListener('load', () => {
 
 const adjustScroll = () => {
     const v = window.scrollY
-    const max = 2150
+    const max = 2300
 
     swap.position.x = mapValue(v, 0, max, 0, 3)
-    swap.position.y = mapValue(v, 400, max, 0, -42)
-    swap.position.z = mapValue(v, 1000, max, 0, -17)
+    swap.position.y = mapValue(v, 400, max, 0, -37)
+    swap.position.z = mapValue(v, 1000, max, 0, -10)
 
     swap.rotation.x = mapValue(v, 0, max, 0, 4.71) * multiplier.x
     swap.rotation.y = mapValue(v, 0, max, 1.4, 0.3) * multiplier.y
     swap.rotation.z = mapValue(v, 0, max, 1, 2.59) * multiplier.z
+
+    const g = mapValue(v, 3200, 4400, 0, -350)
+    gallery.style['margin-left'] = `${g}px`
+
+    2816 -200
 }
 
 const mapValue = (value, l, r, min, max) => {
@@ -173,59 +174,4 @@ const threeTick = () => {
 	renderer.render(scene, camera)
 
 	window.requestAnimationFrame(threeTick)
-}
-
-
-
-
-
-
-
-
-
-
-
-const init = () => {
-
-const positionXControl = document.getElementById("position-x");
-positionXControl.value = swap.position.x;
-positionXControl.addEventListener("input", (e) => {
-  swap.position.x = parseFloat(e.target.value);
-  console.log(e.target.value);
-});
-
-const positionYControl = document.getElementById("position-y");
-positionYControl.value = swap.position.y;
-positionYControl.addEventListener("input", (e) => {
-  swap.position.y = parseFloat(e.target.value);
-});
-
-const positionZControl = document.getElementById("position-z");
-positionZControl.value = swap.position.z;
-positionZControl.addEventListener("input", (e) => {
-  swap.position.z = parseFloat(e.target.value);
-});
-
-const rotationXControl = document.getElementById("rotation-x");
-rotationXControl.value = swap.rotation.x;
-rotationXControl.addEventListener("input", (e) => {
-  swap.rotation.x = parseFloat(e.target.value);
-});
-
-const rotationYControl = document.getElementById("rotation-y");
-rotationYControl.value = swap.rotation.y;
-rotationYControl.addEventListener("input", (e) => {
-  swap.rotation.y = parseFloat(e.target.value);
-});
-
-const rotationZControl = document.getElementById("rotation-z");
-rotationZControl.value = swap.rotation.z;
-rotationZControl.addEventListener("input", (e) => {
-  swap.rotation.z = parseFloat(e.target.value);
-  console.log(swap.rotation, swap.position)
-});
-
-
-
-
 }

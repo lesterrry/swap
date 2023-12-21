@@ -27,7 +27,7 @@ me@aydar.media
 	transition: 0.2s ease-out;
 }
 
-.bg {
+.bg, .smells > div {
 	transition: none;
 }
 
@@ -50,7 +50,8 @@ a {
 	text-decoration: none;
 }
 
-p, input {
+p,
+input {
 	font-size: 42px;
 	color: var(--белый-вторич);
 }
@@ -139,7 +140,8 @@ input {
 	color: var(--белый-вторич);
 }
 
-footer, .separared {
+footer,
+.separared {
 	margin-top: 300px;
 }
 
@@ -201,6 +203,8 @@ footer, .separared {
 	padding: 10px;
 	background-color: rgba(255, 255, 255, 0.5);
 	z-index: 100;
-  }
-  .control-input { width: 100%; }
+}
 
+.control-input {
+	width: 100%;
+}

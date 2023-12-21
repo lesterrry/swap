@@ -12,7 +12,7 @@ me@aydar.media
 
 .bg#a {
 	height: 600px;
-	background-image: linear-gradient(to bottom, red, var(--негр));
+	background-image: linear-gradient(to bottom, rgb(11, 11, 34), var(--негр));
 	left: 0;
 	width: 100vw;
 }
@@ -36,13 +36,19 @@ me@aydar.media
 
 section.logo {
 	margin-top: initial;
+	height: 780px;
 }
 
 section.logo img {
-	position: relative;
+	position: absolute;
+	left: 0;
 	width: 95%;
 	margin: 50px 25px;
 	z-index: 2;
+}
+
+section.logo img:nth-of-type(2) {
+	z-index: 20;
 }
 
 section.logo h1 {

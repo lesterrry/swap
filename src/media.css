@@ -1,3 +1,9 @@
+@media (max-width: 1500px) {
+    canvas {
+        opacity: 0%;
+    }
+}
+
 @media (max-width: 1679px) {
     section {
         padding: 0 20px !important;
