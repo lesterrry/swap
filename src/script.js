@@ -7,14 +7,14 @@ me@aydar.media
 
 import './style.css'
 
-import { gsap } from 'gsap';
+import { gsap } from 'gsap'
 import * as three from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js'
 
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from './split_text';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from './split_text'
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText)
 
 const paragraphs = [
     'section.description p:nth-of-type(1)',
@@ -51,7 +51,16 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.shadowMap.enabled = true
 
 window.addEventListener('scroll', () => {
-    console.log(window.scrollY);
+    const v = window.scrollY
+    const max = 2150
+
+    swap.position.x = mapValue(v, 0, max, 0, 3)
+    swap.position.y = mapValue(v, 0, max, 0, -42)
+    swap.position.z = mapValue(v, 0, max, 0, -17)
+
+    swap.rotation.x = mapValue(v, 0, max, 0, 4.71)
+    swap.rotation.y = mapValue(v, 0, max, 1.4, 0.3)
+    swap.rotation.z = mapValue(v, 0, max, 1, 2.59)
 })
 
 window.addEventListener('resize', () => {
@@ -65,7 +74,7 @@ window.addEventListener('resize', () => {
 
 window.addEventListener('load', () => {
     for (const i of paragraphs) {
-        let split = new SplitText(i);
+        let split = new SplitText(i)
 
         const scrollAnimation = gsap.to(split.words, {
             color: 'white',
@@ -78,14 +87,14 @@ window.addEventListener('load', () => {
             },
             duration: 0.1,
             stagger: 0.1
-        });
+        })
     }
 
-    console.log(sizes);
+    console.log(sizes)
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-    camera.position.set(6, -2, 5)
+    camera.position.set(7, -14, 22)
 	scene.add(camera)
 
 	const hemiLight = new three.HemisphereLight(0xFFFFFF, 0x444444, 1)
@@ -94,8 +103,20 @@ window.addEventListener('load', () => {
 
     const loader = new FBXLoader()
 	loader.load('/3d/swap.fbx', (object) => {
+        object.rotation.y = 1.4
 		object.rotation.z = 1
-        object.rotation.y = 2
+
+        object.scale.z = 0.9
+
+        // object.position.x = 2.3
+        // object.position.y = -42
+        // object.position.z = -17
+
+        // object.rotation.x = 4.71
+        // object.rotation.y = 0.3
+        // object.rotation.z = 2.59
+
+
         object.traverse((child) => {
 			if (child.isMesh) {
 				child.castShadow = true
@@ -103,11 +124,20 @@ window.addEventListener('load', () => {
 			}
 		})
 		swap = object
+        init()
 		scene.add(object)
 	})
 
-    threeTick();
-});
+    threeTick()
+})
+
+const mapValue = (value, l, r, min, max) => {
+    if (value <= l) return min
+    if (value >= r) return max
+    const normalizedValue = (value - l) / (r - l)
+    const mappedValue = min + (max - min) * normalizedValue
+    return mappedValue
+  }
 
 const threeTick = () => {
 	// const elapsed = clock.getElapsedTime()
@@ -121,3 +151,57 @@ const threeTick = () => {
 	window.requestAnimationFrame(threeTick)
 }
 
+
+
+
+
+
+
+
+
+
+
+const init = () => {
+
+const positionXControl = document.getElementById("position-x");
+positionXControl.value = swap.position.x;
+positionXControl.addEventListener("input", (e) => {
+  swap.position.x = parseFloat(e.target.value);
+  console.log(e.target.value);
+});
+
+const positionYControl = document.getElementById("position-y");
+positionYControl.value = swap.position.y;
+positionYControl.addEventListener("input", (e) => {
+  swap.position.y = parseFloat(e.target.value);
+});
+
+const positionZControl = document.getElementById("position-z");
+positionZControl.value = swap.position.z;
+positionZControl.addEventListener("input", (e) => {
+  swap.position.z = parseFloat(e.target.value);
+});
+
+const rotationXControl = document.getElementById("rotation-x");
+rotationXControl.value = swap.rotation.x;
+rotationXControl.addEventListener("input", (e) => {
+  swap.rotation.x = parseFloat(e.target.value);
+});
+
+const rotationYControl = document.getElementById("rotation-y");
+rotationYControl.value = swap.rotation.y;
+rotationYControl.addEventListener("input", (e) => {
+  swap.rotation.y = parseFloat(e.target.value);
+});
+
+const rotationZControl = document.getElementById("rotation-z");
+rotationZControl.value = swap.rotation.z;
+rotationZControl.addEventListener("input", (e) => {
+  swap.rotation.z = parseFloat(e.target.value);
+  console.log(swap.rotation, swap.position)
+});
+
+
+
+
+}

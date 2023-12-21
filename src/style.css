@@ -194,3 +194,13 @@ footer, .separared {
 	font-size: 24px;
 }
 
+.controls {
+	position: fixed;
+	top: 5px;
+	left: 5px;
+	padding: 10px;
+	background-color: rgba(255, 255, 255, 0.5);
+	z-index: 100;
+  }
+  .control-input { width: 100%; }
+
