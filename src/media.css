@@ -74,4 +74,8 @@
     .button {
         width: 100% !important;
     }
+
+    section.buy .window:first-child {
+        background-size: contain;
+    }
 }
