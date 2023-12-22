@@ -88,6 +88,7 @@ section.overview ul * {
 
 section.overview li {
 	margin-bottom: 40px;
+	opacity: 0;
 }
 
 section.overview li h1 {
@@ -186,6 +187,10 @@ section.buy .window:first-child {
 	position: relative;
 	width: 100%;
 	height: 600px;
+	background-image: url('../static/img/swap.png');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 section.buy .button {

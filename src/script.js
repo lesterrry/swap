@@ -85,7 +85,7 @@ window.addEventListener('load', () => {
     for (const i of paragraphs) {
         let split = new SplitText(i)
 
-        const scrollAnimation = gsap.to(split.words, {
+        gsap.to(split.chars, {
             color: 'white',
             scrollTrigger: {
                 trigger: i,
@@ -94,15 +94,28 @@ window.addEventListener('load', () => {
                 // markers: true,
                 toggleActions: 'restart none none reverse',
             },
-            duration: 0.1,
-            stagger: 0.1
+            duration: 0.05,
+            stagger: 0.02
         })
     }
+
+    gsap.to('li', {
+        opacity: 1,
+        scrollTrigger: {
+            trigger: 'ul',
+            start: 'top 60%',
+            end: 'bottom 0%',
+            markers: true,
+            toggleActions: 'restart none none reverse',
+        },
+        duration: 0.1,
+        stagger: 0.25
+    })
 
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-    camera.position.set(7, -14, 22)
+    camera.position.set(7, -13.5, 22)
 	scene.add(camera)
 
 	const hemiLight = new three.HemisphereLight(0xFFFFFF, 0x444444, 1)
@@ -110,20 +123,11 @@ window.addEventListener('load', () => {
 	scene.add(hemiLight)
 
     const loader = new FBXLoader()
-	loader.load('/3d/swap.fbx', (object) => {
+	loader.load('/3d/swap6.fbx', (object) => {
         object.rotation.y = 1.4
 		object.rotation.z = 1
 
         object.scale.z = 0.9
-
-        // object.position.x = 2.3
-        // object.position.y = -42
-        // object.position.z = -17
-
-        // object.rotation.x = 4.71
-        // object.rotation.y = 0.3
-        // object.rotation.z = 2.59
-
 
         object.traverse((child) => {
 			if (child.isMesh) {
@@ -165,12 +169,6 @@ const mapValue = (value, l, r, min, max) => {
   }
 
 const threeTick = () => {
-	// const elapsed = clock.getElapsedTime()
-
-	// camera.position.x = (cursor.x + 1) / 2
-	// camera.position.y = (cursor.y / 2) + 9
-	// camera.lookAt(new THREE.Vector3(0, 6, 0))
-
 	renderer.render(scene, camera)
 
 	window.requestAnimationFrame(threeTick)
