@@ -25,12 +25,13 @@ const paragraphs = [
     'section.buy p:nth-of-type(1)',
     'section.subscribe p:nth-of-type(1)',
 ]
+const logo = document.querySelector('.logo')
 const canvas = document.querySelector('.logo canvas')
 const gallery = document.querySelector('.smells div')
 
 let swap
 const sizes = {
-	width: canvas.clientWidth,
+	width: logo.clientWidth,
 	height: 3200
 }
 let cursor = {
@@ -73,8 +74,7 @@ window.addEventListener('mousemove', (event) => {
 })
 
 window.addEventListener('resize', () => {
-	sizes.width = canvas.clientWidth
-	// sizes.height = canvas.clientHeight
+	sizes.width = logo.clientWidth
 	camera.aspect = sizes.width / sizes.height
 	camera.updateProjectionMatrix()
 	renderer.setSize(sizes.width, sizes.height)

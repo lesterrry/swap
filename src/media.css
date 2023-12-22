@@ -30,9 +30,7 @@
 
 @media (max-width: 1280px) {
     section.logo h1 {
-        position: relative;
-        left: 100px;
-        bottom: 10px;
+        left: 120px;
         font-size: 38px;
     }
 
