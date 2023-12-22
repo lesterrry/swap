@@ -105,7 +105,7 @@ window.addEventListener('load', () => {
             trigger: 'ul',
             start: 'top 60%',
             end: 'bottom 0%',
-            markers: true,
+            // markers: true,
             toggleActions: 'restart none none reverse',
         },
         duration: 0.1,
